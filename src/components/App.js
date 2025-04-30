@@ -1,11 +1,18 @@
 
 import React from "react";
 import './../styles/App.css';
+import LoginForm from './components/loginForm'
 
 const App = () => {
+  onst [isLoggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  }
   return (
     <div>
-        {/* Do not remove the main div */}
+       <h1>lift up</h1>
+      <LoginForm isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>
     </div>
   )
 }
