@@ -1,20 +1,47 @@
+import React, { useState } from "react";
+import "./../styles/App.css";
 
-import React from "react";
-import './../styles/App.css';
-import LoginForm from './components/loginForm'
+const LoginForm = ({ isLoggedIn, onLogin }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username && password) onLogin();
+  };
+
+  if (isLoggedIn) return <p>You are logged in!</p>;
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button type="submit">Log In</button>
+    </form>
+  );
+};
 
 const App = () => {
-  onst [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-  }
+  const handleLogin = () => setIsLoggedIn(true);
+
   return (
     <div>
-       <h1>lift up</h1>
-      <LoginForm isLoggedIn={isLoggedIn} handleLogin={handleLogin}/>
+      <h1>{isLoggedIn ? "Welcome!" : "Log In"}</h1>
+      <LoginForm isLoggedIn={isLoggedIn} onLogin={handleLogin} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
