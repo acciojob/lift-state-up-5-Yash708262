@@ -7,6 +7,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         console.log("Form submitted!");
         setIsLoggedIn(true);
     }}>
+     <h1>Parent Component</h1>
       <label>Username :</label>
       <input></input><br></br>
        <label>Password : </label>
