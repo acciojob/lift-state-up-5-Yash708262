@@ -1,43 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react'
 
-function LoginForm({ isLoggedIn, onLogin }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username && password) {
-      onLogin(); 
-    }
-  };
-
-  if (isLoggedIn) {
-    return <p>You are already logged in.</p>;
-  }
-
+const LoginForm = ({ setIsLoggedIn }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label><br />
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Password:</label><br />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit" style={{ marginTop: '10px' }}>Login</button>
+    <form onSubmit={(e)=>{
+       e.preventDefault();
+        console.log("Form submitted!");
+        setIsLoggedIn(true);
+    }}>
+      <label>Username :</label>
+      <input></input><br></br>
+       <label>Password : </label>
+      <input></input><br></br>
+      <button type="submit">Login</button>
     </form>
-  );
+  )
 }
 
-export default LoginForm;
+export default LoginForm
